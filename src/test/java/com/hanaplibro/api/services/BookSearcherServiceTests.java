@@ -1,8 +1,6 @@
 package com.hanaplibro.api.services;
 
-import com.hanaplibro.api.entities.SearchDocument;
-import com.hanaplibro.api.entities.SearchRequest;
-import com.hanaplibro.api.entities.SearchResponse;
+import com.hanaplibro.api.entities.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,15 +10,15 @@ import reactor.test.StepVerifier;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class BookFinderServiceTests {
+public class BookSearcherServiceTests {
     @Autowired
-    private BookFinderService bookFinderService;
+    private BookSearcherService bookSearcherService;
 
     @Test
     public void givenSearchString_ShouldReturnResponseWithNumFoundAndBooks(){
         SearchRequest searchRequest = new SearchRequest();
         searchRequest.setQuery("mortification of sin");
-        Mono<SearchResponse> response = bookFinderService.getSearchResponse(searchRequest);
+        Mono<SearchResponse> response = bookSearcherService.getSearchResponse(searchRequest);
         StepVerifier.create(response)
                 .thenConsumeWhile(r -> {
                     assertNotNull(r.getDocs());
@@ -43,7 +41,7 @@ public class BookFinderServiceTests {
         SearchRequest searchRequest = new SearchRequest();
         searchRequest.setQuery("lord of the rings");
         searchRequest.setLimit(20);
-        Mono<SearchResponse> response = bookFinderService.getSearchResponse(searchRequest);
+        Mono<SearchResponse> response = bookSearcherService.getSearchResponse(searchRequest);
         StepVerifier.create(response)
                 .thenConsumeWhile(r -> {
                     assertNotNull(r.getDocs());
@@ -60,15 +58,15 @@ public class BookFinderServiceTests {
         searchRequest.setQuery("lord of the rings");
         searchRequest.setLimit(10);
         searchRequest.setPage(2);
-        Mono<SearchResponse> response = bookFinderService.getSearchResponse(searchRequest);
+        Mono<SearchResponse> response = bookSearcherService.getSearchResponse(searchRequest);
         StepVerifier.create(response)
-                .thenConsumeWhile(r -> {
-                    assertNotNull(r.getDocs());
-                    assertEquals(10, r.getDocs().size());
-                    assertEquals(10, r.getStart());
-                    assertEquals(441, r.getNumFound());
-                    return true;
-                })
-                .verifyComplete();
+                    .thenConsumeWhile(r -> {
+                        assertNotNull(r.getDocs());
+                        assertEquals(10, r.getDocs().size());
+                        assertEquals(10, r.getStart());
+                        assertEquals(441, r.getNumFound());
+                        return true;
+                    })
+                    .verifyComplete();
     }
 }

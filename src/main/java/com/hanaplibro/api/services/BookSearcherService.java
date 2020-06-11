@@ -1,5 +1,7 @@
 package com.hanaplibro.api.services;
 
+import com.hanaplibro.api.entities.Book;
+import com.hanaplibro.api.entities.BookRequest;
 import com.hanaplibro.api.entities.SearchRequest;
 import com.hanaplibro.api.entities.SearchResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,12 +11,12 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 @Service
-public class BookFinderService {
+public class BookSearcherService {
     private WebClient webClient;
     private WebClient.Builder builder;
 
     @Autowired
-    public BookFinderService(){
+    public BookSearcherService(){
         builder = WebClient.builder();
         webClient = builder.baseUrl("http://openlibrary.org").build();
     }
