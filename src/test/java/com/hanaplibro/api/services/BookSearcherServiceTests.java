@@ -46,7 +46,6 @@ public class BookSearcherServiceTests {
                 .thenConsumeWhile(r -> {
                     assertNotNull(r.getDocs());
                     assertEquals(20, r.getDocs().size());
-                    assertEquals(441, r.getNumFound());
                     return true;
                 })
                 .verifyComplete();
@@ -64,7 +63,6 @@ public class BookSearcherServiceTests {
                         assertNotNull(r.getDocs());
                         assertEquals(10, r.getDocs().size());
                         assertEquals(10, r.getStart());
-                        assertEquals(441, r.getNumFound());
                         return true;
                     })
                     .verifyComplete();
