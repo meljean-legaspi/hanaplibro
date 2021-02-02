@@ -30,7 +30,7 @@ public class BookSearcherServiceTests {
                                 && searchDocument.getPublishers().get(0).equals("Banner of Truth")
                                 && searchDocument.getAuthors().get(0).equals("John Owen");
                     });
-                    assertEquals(14, r.getNumFound());
+                    assertNotEquals(0, r.getNumFound());
                     return true;
                 })
                 .verifyComplete();

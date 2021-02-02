@@ -13,16 +13,8 @@ public class Identifier {
     @JsonProperty("isbn_10")
     private List<String> isbn10;
 
-    public void setIsbn13(List<String> isbn13) {
-        this.isbn13 = isbn13;
-    }
-
     public List<String> getIsbn13() {
         return isbn13;
-    }
-
-    public void setIsbn10(List<String> isbn10) {
-        this.isbn10 = isbn10;
     }
 
     public List<String> getIsbn10() {
