@@ -1,7 +1,9 @@
 package com.hanaplibro.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
+@Data
 public class Cover {
     @JsonProperty("small")
     private String smallUrl;
@@ -11,16 +13,4 @@ public class Cover {
 
     @JsonProperty("large")
     private String largeUrl;
-
-    public String getSmallUrl() {
-        return smallUrl;
-    }
-
-    public String getMediumUrl() {
-        return mediumUrl;
-    }
-
-    public String getLargeUrl() {
-        return largeUrl;
-    }
 }

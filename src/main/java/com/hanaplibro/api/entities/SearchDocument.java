@@ -1,9 +1,11 @@
 package com.hanaplibro.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.util.List;
 
+@Data
 public class SearchDocument {
     private String title;
     private List<String> isbn;
@@ -16,24 +18,4 @@ public class SearchDocument {
 
     @JsonProperty("author_name")
     private List<String> authors;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public List<String> getIsbn() {
-        return isbn;
-    }
-
-    public List<String> getPublishDates() {
-        return publishDates;
-    }
-
-    public List<String> getPublishers() {
-        return publishers;
-    }
-
-    public List<String> getAuthors() {
-        return authors;
-    }
 }

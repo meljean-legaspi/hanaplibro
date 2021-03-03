@@ -2,10 +2,12 @@ package com.hanaplibro.api.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
 
 import java.util.List;
 import java.util.Optional;
 
+@Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Book {
     private String title;
@@ -22,32 +24,4 @@ public class Book {
 
     @JsonProperty("publish_date")
     private String publishDate;
-
-    public String getTitle() {
-        return title;
-    }
-
-    public List<Publisher> getPublishers() {
-        return publishers;
-    }
-
-    public Identifier getIdentifier() {
-        return identifier;
-    }
-
-    public int getNumberOfPages() {
-        return numberOfPages;
-    }
-
-    public List<Author> getAuthors() {
-        return authors;
-    }
-
-    public Cover getCover() {
-        return cover;
-    }
-
-    public String getPublishDate() {
-        return publishDate;
-    }
 }
